@@ -1,10 +1,13 @@
 package com.innovation.tencent.botany_cultivate.net;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.EditText;
 
+import com.innovation.tencent.botany_cultivate.R;
 import com.innovation.tencent.botany_cultivate.base.BaseActivity;
 import com.innovation.tencent.botany_cultivate.ui.dialog.MyDialog;
+import com.innovation.tencent.botany_cultivate.ui.pulltorefresh.PullToRefreshScrollView;
 import com.innovation.tencent.botany_cultivate.utils.NetWorkUtil;
 import com.innovation.tencent.botany_cultivate.utils.ThreadPoolUtil;
 import com.innovation.tencent.botany_cultivate.utils.UIUtil;
@@ -17,35 +20,40 @@ import org.json.JSONObject;
 public abstract class NetTask {
     private JSONObject jsonObject;
     private Context context;
+    private View baseView;
     private MyDialog myProcessDialog, myErrorDialog;
-
-    public NetTask(Context context) {
-        this.context = context;
+    private PullToRefreshScrollView ptr_scroll;
+    public NetTask(View view) {
+        this.context = view.getContext();
+        this.baseView=view;
         myProcessDialog = new MyDialog(context, "请稍等", new MyDialog.OnMyDialogListener() {
             @Override
             public void back(EditText editText) {
 
             }
         });
+        ptr_scroll= (PullToRefreshScrollView) view.findViewById(R.id.ptr_main);
         myErrorDialog = new MyDialog(context, "网络问题", "网络不给力啊", new MyDialog.OnMyDialogListener() {
             @Override
             public void back(EditText editText) {
 
             }
         });
+
     }
 
 
     public void execute() {
 
         if (NetWorkUtil.getInstance(context).isConnectNet()) {
-            myProcessDialog.show();
             //showProgress
             onStart();
+            myProcessDialog.show();
             TaskRunnable mTask = new TaskRunnable();
             ThreadPoolUtil.getLongPool().execute(mTask);
         } else {
             myErrorDialog.show();
+            ptr_scroll.onRefreshComplete();
         }
     }
 
@@ -111,15 +119,18 @@ public abstract class NetTask {
 
         @Override
         public void run() {
+
             if (jsonObject == null) {
                 onFail();
                 onFinish();
                 myProcessDialog.hide();
                 myErrorDialog.show();
+                ptr_scroll.onRefreshComplete();
             }
             try {
 
                 if (jsonObject.getInt("resultcode") == 200) {
+
                     onSuccess(jsonObject.getJSONObject("result"));
                 } else {
                     int errorCode = jsonObject.getInt("resultcode");

@@ -16,8 +16,11 @@ public class ShopDetailFragment extends BaseFragment {
     private List<FlowerItem> flower_item_list;
     private FlowerAdapter flowerAdapter;
     private View m_view;
+    private int state = 0;
 
     public void setFlowerList(List<FlowerItem> flowerList){
+        flower_item_list = flowerList;
+        state = 1;
     }
 
     @Override
@@ -31,8 +34,10 @@ public class ShopDetailFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        flower_item_list = new ArrayList<FlowerItem>();
-        initFlowerItem();
+        if (state == 0){
+            flower_item_list = new ArrayList<FlowerItem>();
+            initFlowerItem();
+        }
     }
 
     @Override

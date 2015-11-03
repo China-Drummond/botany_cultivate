@@ -16,7 +16,7 @@ public class NetWorkUtil {
     private NetWorkUtil(Context context) {
         this.context = context;
         manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        networkInfo = manager.getActiveNetworkInfo();
+
     }
 
     public static NetWorkUtil getInstance(Context context) {
@@ -28,6 +28,7 @@ public class NetWorkUtil {
 
     //检测网络是否可用
     public boolean isConnectNet() {
+        networkInfo = manager.getActiveNetworkInfo();
         if (networkInfo != null) {
             return networkInfo.isAvailable();
         }

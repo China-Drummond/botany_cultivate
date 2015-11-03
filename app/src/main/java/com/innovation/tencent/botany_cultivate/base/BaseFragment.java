@@ -1,4 +1,6 @@
 package com.innovation.tencent.botany_cultivate.base;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,4 +42,9 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData(View view);
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }
