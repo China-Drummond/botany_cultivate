@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_left_detail"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_leftimage_shopitem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/iv_leftcircle_shopitem"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_above="@+id/tv_leftarea_shopitem"
+            android:layout_alignEnd="@+id/iv_leftimage_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_leftflower_shopitem"
+            android:text="玫瑰"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_leftimage_shopitem"
+            android:layout_alignStart="@+id/iv_leftimage_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_leftprice_shopitem"
+            android:text="$50"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_leftflower_shopitem"
+            android:layout_alignStart="@+id/tv_leftflower_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_leftarea_shopitem"
+            android:text="成都市"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_leftprice_shopitem"
+            android:layout_alignEnd="@+id/iv_leftcircle_shopitem" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_right_detail"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_rightimage_shopitem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/iv_rightcircle_shopitem"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_above="@+id/tv_rightarea_shopitem"
+            android:layout_alignEnd="@+id/iv_rightimage_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_rightflower_shopitem"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_rightimage_shopitem"
+            android:layout_alignStart="@+id/iv_rightimage_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_rightprice_shopitem"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_rightflower_shopitem"
+            android:layout_alignStart="@+id/tv_rightflower_shopitem" />
+
+        <TextView
+            android:id="@+id/tv_rightarea_shopitem"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_rightprice_shopitem"
+            android:layout_alignEnd="@+id/iv_rightcircle_shopitem" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

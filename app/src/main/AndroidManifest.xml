@@ -24,10 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activit
             android:name=".ui.activity.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activit>
+
     </application>
 
 </manifest>

@@ -1,10 +1,53 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.innovation.tencent.botany_cultivate.ui.fragment.ShopFragment">
+    tools:context="com.innovation.tencent.botany_cultivate.ui.fragment.ShopFragment"
+    android:id="@+id/fl_shop">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="3" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#66CC66">
+
+            <TextView
+                android:id="@+id/tv_virtual_shop"
+                android:text="虚拟市场"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:padding="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#80FFFFFF"/>
+
+            <TextView
+                android:id="@+id/tv_reality_shop"
+                android:text="真实市场"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="搜索"></SearchView>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_shop_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
 
 </FrameLayout>
