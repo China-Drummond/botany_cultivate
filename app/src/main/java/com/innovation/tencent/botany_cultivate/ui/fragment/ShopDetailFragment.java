@@ -1,5 +1,7 @@
 package com.innovation.tencent.botany_cultivate.ui.fragment;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -19,8 +21,9 @@ public class ShopDetailFragment extends BaseFragment {
     private int state = 0;
 
     public void setFlowerList(List<FlowerItem> flowerList){
-        flower_item_list = flowerList;
-        state = 1;
+        //flower_item_list.remove(0);
+        //flowerAdapter.notifyDataSetChanged();
+        //Log.d("ttttttttttttttttttttttttt",flowerAdapter.toString());
     }
 
     @Override
@@ -34,7 +37,14 @@ public class ShopDetailFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        if (state == 0){
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            Log.d("kkkkkkkk",bundle.toString() + "!!!!!");
+            ArrayList list = bundle.getParcelableArrayList("list");
+            flower_item_list = new ArrayList<FlowerItem>();
+            flower_item_list = (List<FlowerItem>) list.get(0);
+            Log.d("########",flower_item_list.get(0).getName());
+        }else {
             flower_item_list = new ArrayList<FlowerItem>();
             initFlowerItem();
         }
@@ -58,5 +68,26 @@ public class ShopDetailFragment extends BaseFragment {
 
         FlowerItem flowerItem3 = new FlowerItem("茉莉",50,"成都市",R.mipmap.ic_launcher,R.mipmap.ic_launcher);
         flower_item_list.add(flowerItem3);
+
+        FlowerItem flowerItem4 = new FlowerItem("茉莉",50,"成都市",R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        flower_item_list.add(flowerItem4);
     }
+
+//    @Override
+//    public void onDestroy() {
+//        Log.d("dddddddddddd","destroy");
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        Log.d("dddddddddddd","resume");
+//        super.onResume();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        Log.d("dddddddddddd","stop");
+//        super.onStop();
+//    }
 }

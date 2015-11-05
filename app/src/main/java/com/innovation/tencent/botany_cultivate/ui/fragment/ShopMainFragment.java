@@ -1,5 +1,6 @@
 package com.innovation.tencent.botany_cultivate.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -28,6 +29,31 @@ public class ShopMainFragment extends BaseFragment {
     @Override
     protected void setListener() {
 
+        lv_type_shop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = type_item_list.get(position);
+                List<FlowerItem> flowerList = new ArrayList<FlowerItem>();
+                flowerList.add(new FlowerItem(name,50,"成都市",R.mipmap.ic_launcher,R.mipmap.ic_launcher));
+                flowerList.add(new FlowerItem(name, 50, "成都市", R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+                flowerList.add(new FlowerItem(name, 50, "成都市", R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+                flowerList.add(new FlowerItem(name, 50, "成都市", R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+
+                ShopDetailFragment shopDetailFragment = new ShopDetailFragment();
+                ArrayList list = new ArrayList();
+                list.add(flowerList);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("list", list);
+                shopDetailFragment.setArguments(bundle);
+
+                FragmentManager fm = getChildFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.fl_detail_shop, shopDetailFragment);
+                transaction.commit();
+
+                //shopDetailFragment.setFlowerList(flowerList);
+            }
+        });
     }
 
     @Override
@@ -36,6 +62,12 @@ public class ShopMainFragment extends BaseFragment {
         type_item_list = new ArrayList<String>();
 
         initTypeItem();
+
+        ShopDetailFragment shopDetailFragment = new ShopDetailFragment();
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.fl_detail_shop, shopDetailFragment);
+        transaction.commit();
     }
 
     @Override
@@ -44,23 +76,6 @@ public class ShopMainFragment extends BaseFragment {
         lv_type_shop = (ListView) view.findViewById(R.id.lv_type_shop);
         typeAdapter = new TypeAdapter(view.getContext(),R.layout.frament_shop_typeitem,type_item_list);
         lv_type_shop.setAdapter(typeAdapter);
-
-        lv_type_shop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String name = type_item_list.get(position);
-                List<FlowerItem> flowerList = new ArrayList<FlowerItem>();
-                flowerList.add(new FlowerItem(name,50,"成都市",R.mipmap.ic_launcher,R.mipmap.ic_launcher));
-                flowerList.add(new FlowerItem(name, 50, "成都市", R.mipmap.ic_launcher, R.mipmap.ic_launcher));
-
-                ShopDetailFragment shopDetailFragment = new ShopDetailFragment();
-                shopDetailFragment.setFlowerList(flowerList);
-                FragmentManager fm = getChildFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.fra_flower_shop,shopDetailFragment);
-                transaction.commit();
-            }
-        });
     }
 
     private void initTypeItem(){

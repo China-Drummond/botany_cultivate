@@ -23,11 +23,13 @@ public class FlowerAdapter extends ArrayAdapter<FlowerItem> {
 
     private int resourceId;
     private int m_count;
+    private int size;
 
     public FlowerAdapter(Context context,int textViewResourceId,List<FlowerItem> objects){
         super(context,textViewResourceId,objects);
         resourceId = textViewResourceId;
         m_count = objects.size() / 2 + objects.size() % 2;
+        size = objects.size();
     }
 
     @Override
@@ -40,11 +42,11 @@ public class FlowerAdapter extends ArrayAdapter<FlowerItem> {
         FlowerItem flowerItem_left = getItem(position * 2);
         FlowerItem flowerItem_right;
 
-        if (position * 2 + 1 != m_count * 2 - 1){
-            flowerItem_right = getItem(position * 2 + 1);
-        }else flowerItem_right = null;
+        if ((position * 2 + 1 == m_count * 2 - 1) && (size != (position + 1) * 2)){
+            flowerItem_right = null;
+        }else flowerItem_right = getItem(position * 2 + 1);
 
-        final View view;
+        View view;
         ViewHolder viewHolder;
 
         if (convertView == null){
@@ -81,7 +83,6 @@ public class FlowerAdapter extends ArrayAdapter<FlowerItem> {
         viewHolder.item_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(),"click left",Toast.LENGTH_SHORT).show();
                 Log.d("test_left","click");
             }
         });
@@ -95,7 +96,6 @@ public class FlowerAdapter extends ArrayAdapter<FlowerItem> {
             viewHolder.item_right.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(view.getContext(),"click right",Toast.LENGTH_SHORT).show();
                     Log.d("test_right","click");
                 }
             });

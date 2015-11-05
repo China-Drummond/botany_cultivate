@@ -14,13 +14,22 @@
             android:layout_height="match_parent">
         </ListView>
 
-        <fragment
-            android:id="@+id/fra_flower_shop"
-            android:name = "com.innovation.tencent.botany_cultivate.ui.fragment.ShopDetailFragment"
+
+
+        <FrameLayout
+            android:id="@+id/fl_detail_shop"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
-        </fragment>
+
+            <!--<fragment-->
+                <!--android:id="@+id/fra_flower_shop"-->
+                <!--android:name = "com.innovation.tencent.botany_cultivate.ui.fragment.ShopDetailFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+            <!--</fragment>-->
+
+        </FrameLayout>
 
     </LinearLayout>
 
